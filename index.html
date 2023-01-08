@@ -152,8 +152,12 @@
         const outsideField = document.getElementsByTagName('body'); // ..byTagName output array
         console.log(outsideField);
         
-        const btnAlert = document.getElementById('btn_alert');
+        const textedFld = document.getElementById('texted_field'); //input
+        console.log(textedFld);
+
+        const btnAlert = document.getElementById('btn_alert'); //button ok
         console.log(btnAlert);
+        
         
     
         const onShowDivNameHandler = ('click', (event) => {
@@ -178,26 +182,39 @@
             selectedText.innerHTML="Selected: ";
         });
 
-        let isUpperCase = '';
-        let someStr;
+        // let isUpperCase = '';
+        // let someStr;
+        // const onTypeLowerCaseHandler = (event) => {
+        //     someStr = event.key;
+        //     if (isUpperCase = someStr.toUpperCase() == someStr) {
+        //         event.preventDefault();
+        //     };
+        //     console.log(event);
+        //     console.log(someStr);
+        // };
         const onTypeLowerCaseHandler = (event) => {
-            someStr = event.key;
-            if (isUpperCase = someStr.toUpperCase() == someStr) {
+            if (event.key === event.key.toUpperCase()) {
                 event.preventDefault();
             };
             console.log(event);
-            console.log(someStr);
         };
 
-        btnAlert.addEventListener('click', (event) => {
-            btnAlert.disabled = true;
 
-            if (someStr !== '') {
-                btnAlert.disabled = false;
-                alert(someStr);
-            }
-        })
+        btnAlert.disabled = true;
 
+        btnAlert.addEventListener('click', () => {
+            let inputValue = textedFld.value;
+            alert(inputValue); //alert
+        });
+
+        textedFld.addEventListener('click', (event) => {
+            if (textedFld.value !== '') {
+                btnAlert.disabled = true;
+                return
+            };
+            btnAlert.disabled = false;
+            
+        });
 
     </script>
 </body>
