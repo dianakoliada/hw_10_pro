@@ -6,7 +6,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home work 10</title>
 </head>
+
+<style>
+    body {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        background-color: #ecf0f1;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        height: 100vh;
+    }
+
+    .title {
+        color: #34495e;
+    }
+
+    .wrap {
+        background-color: #34495e;
+        width: 60%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .wrap__item {
+        background-color: #7f8fa6;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        height: 30vh;
+    }
+
+    .wrap__btn {
+        background-color: #c8d6e5;
+        width: 25%;
+        height: 15vh;
+    }
+
+    .wrap,
+    .wrap__item,
+    .wrap__btn {
+        margin: 0 auto;
+        padding: 16px;
+        border-radius: 40px;
+        transition: all 1.5s;
+    }
+
+    .wrap,
+    .wrap__item,
+    .wrap__btn:hover {
+        cursor: pointer;
+        transition: all 1.5s;
+    }
+
+    .wrap:hover {
+        background-color: #557493;
+    }
+
+    .wrap__item:hover {
+        background-color: #a2afc0;
+    }
+    
+    .wrap__btn:hover {
+        background-color: #a1c6ee;
+    }
+
+
+
+    .btn,
+    .btn--special {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 7px;
+        border-radius: 5px;
+        border: 0;
+        transition: all 1s;
+    }
+
+    .btn:hover,
+    .btn--special:hover {
+        cursor: grab;
+        box-shadow: 0 0 2px 2px rgba(0,0,0,.75);
+        transition: all 1s;
+    }
+
+    input {
+        margin-top: 1.5%;
+        width: 20%;
+        text-align: center;
+        outline: none;
+        border-radius: 8px;
+        line-height: 22px;
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        border: 0;
+    }
+
+    p.item {
+        color: #ecf0f1;
+        margin-bottom: -50px;
+    }
+</style>
+
 <body>
     
+    <p class="title" id="selected">
+        Selected:
+    </p>
+    <div div-name="Div N1 was clicked" class="wrap" onclick="onShowDivNameHandler(event)">
+        <div div-name="Div N2 was clicked" class="wrap__item" onclick="onShowDivNameHandler(event)">
+            <div div-name="Div N3 was clicked" class="wrap__btn" onclick="onShowDivNameHandler(event)">
+                <button class="btn" id="button_one">Button 1</button>
+            </div>
+            <div div-name="Div N4 was clicked" class="wrap__btn" onclick="onShowDivNameHandler(event)">
+                <button class="btn" id="button_two">Button 2</button>
+            </div>
+        </div>
+        <p class="title item">
+            Some text
+        </p>
+    </div>
+    <input type="text" id="texted_field" onkeypress="onTypeLowerCaseHandler(event)">
+    <button class="btn--special" id="btn_alert">Ok</button>
+   
+    <script>
+        'use strict'
+
+        /*
+        Кнопка ок выводит алерт с ввденным текстом, пока инпут пуст, кнопка не активна.
+        document.getElementById("myBtn").disabled = true; // так ее можно сделать не активной
+        ПОМНИТЕ, до начала ввода она уже не активна ;)*/
+
+        const selectedText = document.getElementById('selected');
+        console.log(selectedText);
+
+        const btnOne = document.getElementById('button_one');
+        console.log(btnOne);
+
+        const btnTwo = document.getElementById('button_two');
+        console.log(btnTwo);
+        
+        const outsideField = document.getElementsByTagName('body'); // ..byTagName output array
+        console.log(outsideField);
+        
+        const btnAlert = document.getElementById('btn_alert');
+        console.log(btnAlert);
+        
+    
+        const onShowDivNameHandler = ('click', (event) => {
+            let someValue = event.target.getAttribute("div-name");
+            selectedText.innerHTML="Selected: "+someValue;
+            event.stopPropagation();
+        }); 
+        
+        btnOne.addEventListener('click', (event) => {
+            event.stopPropagation();
+            let btnValueOne = event.target.innerHTML;
+            selectedText.innerHTML= "Selected: "+btnValueOne;
+        });
+
+        btnTwo.addEventListener('click', (event) => {
+            event.stopPropagation();
+            let btnValueTwo = event.target.innerHTML;
+            selectedText.innerHTML="Selected: "+btnValueTwo;
+        });
+
+        outsideField[0].addEventListener('click', () => {
+            selectedText.innerHTML="Selected: ";
+        });
+
+        let isUpperCase = '';
+        let someStr;
+        const onTypeLowerCaseHandler = (event) => {
+            someStr = event.key;
+            if (isUpperCase = someStr.toUpperCase() == someStr) {
+                event.preventDefault();
+            };
+            console.log(event);
+            console.log(someStr);
+        };
+
+        btnAlert.addEventListener('click', (event) => {
+            btnAlert.disabled = true;
+
+            if (someStr !== '') {
+                btnAlert.disabled = false;
+                alert(someStr);
+            }
+        })
+
+
+    </script>
 </body>
 </html>
